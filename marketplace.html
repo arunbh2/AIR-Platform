@@ -1,1 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Marketplace - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Marketplace specific styles */
+        .marketplace-hero {
+            background-color: var(--success);
+            background-image: linear-gradient(rgba(46, 204, 113, 0.9), rgba(46, 204, 113, 0.9)), url('../images/hero-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
 
+        .marketplace-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .filter-sidebar {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+        }
+
+        .filter-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .filter-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .range-group {
+            margin-top: var(--spacing-md);
+        }
+
+        .range-input {
+            width: 100%;
+            accent-color: var(--primary);
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-xs);
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .filter-actions .btn {
+            flex: 1;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .marketplace-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .marketplace-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .marketplace-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .marketplace-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .sort-by {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+        }
+
+        .sort-by select {
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            background-color: var(--white);
+            cursor: pointer;
+        }
+
+        .view-toggle {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+        }
+
+        .view-option {
+            padding: 0.35rem 0.75rem;
+            background-color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .view-option.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+
+        .badge-urgent {
+            background-color: var(--alert);
+            color: var(--white);
+        }
+
+        .badge-new {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .badge-funded {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--spacing-lg);
+        }
+
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-item:hover {
+            background-color: var(--bg-light);
+        }
+
+        .pagination-item.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .pagination-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .mobile-filter-toggle {
+            display: none;
+            margin-bottom: var(--spacing-md);
+            width: 100%;
+        }
+
+        @media (max-width: 992px) {
+            .marketplace-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .filter-sidebar.active {
+                display: block;
+            }
+
+            .mobile-filter-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .marketplace-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-md);
+            }
+
+            .marketplace-actions {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .sort-by {
+                width: 100%;
+            }
+
+            .sort-by select {
+                flex: 1;
+            }
+
+            .view-toggle {
+                width: 100%;
+            }
+
+            .view-option {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html" class="active">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html">Community Forum</a></li>
+                    <li><a href="tools-training.html">Tools & Training</a></li>
+                    <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Marketplace Hero -->
+    <section class="marketplace-hero">
+        <div class="container">
+            <h1>Impact Marketplace</h1>
+            <p>Fund Solutions. See Impact.</p>
+        </div>
+    </section>
+
+    <!-- Marketplace Main -->
+    <main class="container">
+        <button class="btn btn-secondary mobile-filter-toggle">
+            <i data-lucide="filter"></i>
+            Filter Projects
+        </button>
+
+        <div class="marketplace-layout">
+            <!-- Filters Sidebar -->
+            <aside class="filter-sidebar">
+                <div class="filter-section">
+                    <h3>Project Category</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cat-agriculture" checked>
+                            <label for="cat-agriculture">Agriculture</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cat-water" checked>
+                            <label for="cat-water">Water & Sanitation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cat-flood" checked>
+                            <label for="cat-flood">Flood Protection</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cat-energy" checked>
+                            <label for="cat-energy">Renewable Energy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cat-education" checked>
+                            <label for="cat-education">Education & Training</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Region</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="region-south-asia" checked>
+                            <label for="region-south-asia">South Asia</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="region-southeast-asia" checked>
+                            <label for="region-southeast-asia">Southeast Asia</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="region-east-asia" checked>
+                            <label for="region-east-asia">East Asia</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="region-central-asia" checked>
+                            <label for="region-central-asia">Central Asia</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Funding Status</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="status-urgent" checked>
+                            <label for="status-urgent">Urgent Needs</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="status-new" checked>
+                            <label for="status-new">Newly Listed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="status-progress" checked>
+                            <label for="status-progress">In Progress</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="status-funded">
+                            <label for="status-funded">Fully Funded</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Funding Range</h3>
+                    <div class="range-group">
+                        <input type="range" min="1000" max="500000" value="500000" class="range-input" id="funding-range">
+                        <div class="range-values">
+                            <span>$1,000</span>
+                            <span id="funding-value">$500,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn btn-secondary">Reset Filters</button>
+                    <button class="btn btn-primary">Apply Filters</button>
+                </div>
+            </aside>
+
+            <!-- Marketplace Content -->
+            <div class="marketplace-content">
+                <div class="marketplace-header">
+                    <div class="marketplace-title">
+                        <h2>Climate Resilience Projects</h2>
+                    </div>
+                    <div class="marketplace-actions">
+                        <div class="sort-by">
+                            <span>Sort by:</span>
+                            <select>
+                                <option value="urgency">Urgency</option>
+                                <option value="newest">Newest</option>
+                                <option value="funding">Funding Progress</option>
+                                <option value="alphabetical">Alphabetical</option>
+                            </select>
+                        </div>
+                        <div class="view-toggle">
+                            <div class="view-option active">
+                                <i data-lucide="grid"></i>
+                            </div>
+                            <div class="view-option">
+                                <i data-lucide="list"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project Card 1 -->
+                    <div class="project-card">
+                        <div class="project-image" style="position: relative;">
+                            <span class="project-badge badge-urgent">Urgent</span>
+                            <img src="images/marketplace/project1.jpg" alt="Integrated Flood Resilience Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Integrated Flood Resilience and Adaptation Project</h3>
+                            <p class="location">Luzon, Philippines</p>
+                            <p class="description">Reducing climate risks through improved flood management in critical river basins.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 75%"></div>
+                                <p class="progress-text">75% funded ($230,000/$303,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-primary">Fund This Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card">
+                        <div class="project-image" style="position: relative;">
+                            <span class="project-badge badge-new">New</span>
+                            <img src="images/marketplace/project2.jpg" alt="Climate-Smart Agriculture Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Climate-Smart Agriculture Project</h3>
+                            <p class="location">Punjab, Pakistan</p>
+                            <p class="description">Enhancing food security and promoting sustainable farming practices.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 45%"></div>
+                                <p class="progress-text">45% funded ($33,750/$75,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-primary">Fund This Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/marketplace/project3.jpg" alt="Rural Water Supply Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Sustainable Rural Water Supply Project</h3>
+                            <p class="location">Kyrgyz Republic</p>
+                            <p class="description">Expanding water access and improving sanitation in rural communities.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 60%"></div>
+                                <p class="progress-text">60% funded ($30,000/$50,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-primary">Fund This Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4 -->
+                    <div class="project-card">
+                        <div class="project-image" style="position: relative;">
+                            <span class="project-badge badge-funded">Funded</span>
+                            <img src="https://via.placeholder.com/600x400" alt="Sarawak Alternative Rural Electrification Scheme">
+                        </div>
+                        <div class="project-content">
+                            <h3>Sarawak Alternative Rural Electrification Scheme</h3>
+                            <p class="location">Sarawak, Malaysia</p>
+                            <p class="description">Bringing renewable solar energy to remote communities in rural Sarawak.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 100%"></div>
+                                <p class="progress-text">100% funded ($200,000/$200,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Impact</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 5 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Southeast Asia Disaster Risk Management Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Southeast Asia Disaster Risk Management Project</h3>
+                            <p class="location">Muang Xay, Lao PDR</p>
+                            <p class="description">Reducing flooding impacts and enhancing disaster management capabilities.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 35%"></div>
+                                <p class="progress-text">35% funded ($8,750/$25,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-primary">Fund This Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 6 -->
+                    <div class="project-card">
+                        <div class="project-image" style="position: relative;">
+                            <span class="project-badge badge-urgent">Urgent</span>
+                            <img src="https://via.placeholder.com/600x400" alt="Mangrove Restoration and Community Resilience">
+                        </div>
+                        <div class="project-content">
+                            <h3>Mangrove Restoration and Community Resilience</h3>
+                            <p class="location">Del Carmen, Philippines</p>
+                            <p class="description">Restoring mangrove ecosystems to enhance coastal community resilience.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 15%"></div>
+                                <p class="progress-text">15% funded ($6,000/$40,000)</p>
+                            </div>
+                            <a href="#" class="btn btn-primary">Fund This Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="pagination-item disabled">
+                        <i data-lucide="chevron-left"></i>
+                    </a>
+                    <a href="#" class="pagination-item active">1</a>
+                    <a href="#" class="pagination-item">2</a>
+                    <a href="#" class="pagination-item">3</a>
+                    <a href="#" class="pagination-item">4</a>
+                    <a href="#" class="pagination-item">
+                        <i data-lucide="chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile filter toggle
+        const mobileFilterToggle = document.querySelector('.mobile-filter-toggle');
+        const filterSidebar = document.querySelector('.filter-sidebar');
+
+        if (mobileFilterToggle) {
+            mobileFilterToggle.addEventListener('click', function() {
+                filterSidebar.classList.toggle('active');
+                
+                if (filterSidebar.classList.contains('active')) {
+                    this.innerHTML = '<i data-lucide="x"></i> Hide Filters';
+                } else {
+                    this.innerHTML = '<i data-lucide="filter"></i> Filter Projects';
+                }
+                
+                lucide.createIcons();
+            });
+        }
+
+        // Funding range slider
+        const fundingRange = document.getElementById('funding-range');
+        const fundingValue = document.getElementById('funding-value');
+
+        if (fundingRange && fundingValue) {
+            fundingRange.addEventListener('input', function() {
+                fundingValue.textContent = '$' + parseInt(this.value).toLocaleString();
+            });
+        }
+
+        // View toggle
+        const viewOptions = document.querySelectorAll('.view-option');
+        const projectsGrid = document.querySelector('.projects-grid');
+
+        viewOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                viewOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Toggle between grid and list view
+                if (this.querySelector('i').getAttribute('data-lucide') === 'grid') {
+                    projectsGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+                } else {
+                    projectsGrid.style.gridTemplateColumns = '1fr';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
