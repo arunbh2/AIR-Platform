@@ -1,1 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Knowledge Hub specific styles */
+        .knowledge-hero {
+            background-color: var(--secondary);
+            background-image: linear-gradient(rgba(27, 156, 252, 0.9), rgba(27, 156, 252, 0.9)), url('../images/hero-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
 
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            border: none;
+            font-size: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-button {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-button i {
+            width: 24px;
+            height: 24px;
+            color: var(--text-light);
+        }
+
+        .categories-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .case-studies .category-header {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+
+        .whitepapers .category-header {
+            background-color: rgba(27, 156, 252, 0.1);
+        }
+
+        .webinars .category-header {
+            background-color: rgba(255, 166, 0, 0.1);
+        }
+
+        .best-practices .category-header {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .case-studies .category-icon {
+            background-color: var(--success);
+        }
+
+        .whitepapers .category-icon {
+            background-color: var(--secondary);
+        }
+
+        .webinars .category-icon {
+            background-color: var(--primary);
+        }
+
+        .best-practices .category-icon {
+            background-color: var(--alert);
+        }
+
+        .category-icon i {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+        }
+
+        .category-title h3 {
+            margin-bottom: 0;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-description {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .featured-section {
+            background-color: var(--bg-light);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .content-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .content-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .content-card:hover .content-image img {
+            transform: scale(1.05);
+        }
+
+        .content-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 10px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tag-case-study {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .tag-whitepaper {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .tag-webinar {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .tag-best-practice {
+            background-color: var(--alert);
+            color: var(--white);
+        }
+
+        .content-details {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+
+        .content-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-md);
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .content-description {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .content-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-action {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .content-action i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .highlights-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .insight-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .insight-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+
+        .insight-description {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .insight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--spacing-md) 0;
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .insight-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .insight-marker {
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .insight-text {
+            flex: 1;
+        }
+
+        .faq-section {
+            background-color: var(--bg-light);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: var(--spacing-lg);
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        @media (max-width: 992px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                max-width: 100%;
+            }
+            
+            .categories-grid,
+            .content-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html" class="active">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html">Community Forum</a></li>
+                    <li><a href="tools-training.html">Tools & Training</a></li>
+                    <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Knowledge Hub Hero -->
+    <section class="knowledge-hero">
+        <div class="container">
+            <h1>Knowledge Hub</h1>
+            <p>Access actionable insights, case studies, and research on climate resilience in Asia</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for topics, case studies, or resources...">
+                <button class="search-button">
+                    <i data-lucide="search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Content Categories</h2>
+                <p>Explore our comprehensive collection of climate resilience resources</p>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- Case Studies Category -->
+                <div class="category-card case-studies">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i data-lucide="check-circle"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>Case Studies</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">
+                            Real-world examples of successful climate adaptation initiatives, detailed analyses of implementation approaches, and measurable outcomes from various projects across Asia.
+                        </p>
+                        <a href="#" class="btn btn-primary">Explore Case Studies</a>
+                    </div>
+                </div>
+                
+                <!-- Whitepapers Category -->
+                <div class="category-card whitepapers">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i data-lucide="file-text"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>Whitepapers & Research</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">
+                            In-depth research papers, scholarly articles, and technical reports on climate science, adaptation strategies, policy frameworks, and emerging technologies for resilience.
+                        </p>
+                        <a href="#" class="btn btn-secondary">Access Research</a>
+                    </div>
+                </div>
+                
+                <!-- Webinars Category -->
+                <div class="category-card webinars">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i data-lucide="video"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>Webinars & Interviews</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">
+                            Expert presentations, panel discussions, and interviews featuring climate resilience practitioners, researchers, policymakers, and community leaders from across Asia.
+                        </p>
+                        <a href="#" class="btn btn-primary" style="background-color: var(--primary);">Watch Webinars</a>
+                    </div>
+                </div>
+                
+                <!-- Best Practices Category -->
+                <div class="category-card best-practices">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i data-lucide="book-open"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>Best Practice Guides</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">
+                            Practical guides, toolkits, and methodologies for implementing climate adaptation measures, with step-by-step instructions and best practices for various contexts.
+                        </p>
+                        <a href="#" class="btn btn-primary" style="background-color: var(--alert);">View Guides</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Content -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Content</h2>
+                <p>Highlighted resources to help you navigate climate resilience challenges</p>
+            </div>
+            
+            <div class="content-cards">
+                <!-- Content Card 1 -->
+                <div class="content-card">
+                    <div class="content-image">
+                        <span class="content-tag tag-case-study">Case Study</span>
+                        <img src="https://via.placeholder.com/600x400" alt="Del Carmen Mangrove Restoration">
+                    </div>
+                    <div class="content-details">
+                        <h3 class="content-title">Enhancing Climate Change Resilience in Del Carmen</h3>
+                        <div class="content-meta">
+                            <span>Philippines</span>
+                            <span>December 2024</span>
+                        </div>
+                        <p class="content-description">
+                            How a coastal community in the Philippines implemented a comprehensive mangrove restoration program to protect against storm surges and create sustainable livelihoods.
+                        </p>
+                        <div class="content-footer">
+                            <a href="#" class="content-action">
+                                Read Case Study
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                            <span>10 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Card 2 -->
+                <div class="content-card">
+                    <div class="content-image">
+                        <span class="content-tag tag-whitepaper">Research</span>
+                        <img src="https://via.placeholder.com/600x400" alt="Digital Technologies for Climate Adaptation">
+                    </div>
+                    <div class="content-details">
+                        <h3 class="content-title">Harnessing Digital Technologies for Climate Adaptation</h3>
+                        <div class="content-meta">
+                            <span>Asia-Pacific Region</span>
+                            <span>October 2024</span>
+                        </div>
+                        <p class="content-description">
+                            An exploration of how emerging digital technologies like AI, IoT, and remote sensing are transforming climate adaptation efforts across the Asia-Pacific region.
+                        </p>
+                        <div class="content-footer">
+                            <a href="#" class="content-action">
+                                Download Report
+                                <i data-lucide="download"></i>
+                            </a>
+                            <span>25 pages</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Card 3 -->
+                <div class="content-card">
+                    <div class="content-image">
+                        <span class="content-tag tag-webinar">Webinar</span>
+                        <img src="https://via.placeholder.com/600x400" alt="Climate-Smart Village Webinar">
+                    </div>
+                    <div class="content-details">
+                        <h3 class="content-title">Climate-Smart Village Approach in Northern Vietnam</h3>
+                        <div class="content-meta">
+                            <span>Vietnam</span>
+                            <span>November 2024</span>
+                        </div>
+                        <p class="content-description">
+                            A recorded webinar featuring experts discussing the successful implementation of the Climate-Smart Village model in Ma village, Northern Vietnam.
+                        </p>
+                        <div class="content-footer">
+                            <a href="#" class="content-action">
+                                Watch Webinar
+                                <i data-lucide="play"></i>
+                            </a>
+                            <span>45 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="highlights-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Insights from Recent Research</h2>
+                <p>Actionable takeaways from recent climate resilience studies in Asia</p>
+            </div>
+            
+            <div class="insights-grid">
+                <!-- Insight Card 1 -->
+                <div class="insight-card">
+                    <div class="insight-content">
+                        <h3 class="insight-title">Adaptation Strategies for Asian Farmers</h3>
+                        <p class="insight-description">
+                            Recent research identifies five crucial areas for adaptation among Asian farming communities facing climate change:
+                        </p>
+                        <ul class="insight-list">
+                            <li class="insight-item">
+                                <div class="insight-marker">1</div>
+                                <div class="insight-text">
+                                    <strong>Livelihood Diversification:</strong> Expanding income sources beyond agriculture to reduce climate vulnerability.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">2</div>
+                                <div class="insight-text">
+                                    <strong>Agricultural Diversification:</strong> Cultivating multiple crop varieties and integrating livestock to spread risk.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">3</div>
+                                <div class="insight-text">
+                                    <strong>Risk Management:</strong> Implementing early warning systems and insurance mechanisms to protect against climate shocks.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">4</div>
+                                <div class="insight-text">
+                                    <strong>Land/Crop Management:</strong> Adopting sustainable practices like conservation agriculture and agroforestry.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">5</div>
+                                <div class="insight-text">
+                                    <strong>Farm/Income Management:</strong> Improving resource efficiency and financial planning to enhance resilience.
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Read Full Analysis</a>
+                    </div>
+                </div>
+                
+                <!-- Insight Card 2 -->
+                <div class="insight-card">
+                    <div class="insight-content">
+                        <h3 class="insight-title">Digital Technologies for Climate Resilience</h3>
+                        <p class="insight-description">
+                            Emerging digital technologies are transforming climate adaptation efforts across Asia-Pacific in key sectors:
+                        </p>
+                        <ul class="insight-list">
+                            <li class="insight-item">
+                                <div class="insight-marker">1</div>
+                                <div class="insight-text">
+                                    <strong>Agriculture:</strong> Precision farming techniques using sensors, drones, and AI to optimize resource use and adapt to changing conditions.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">2</div>
+                                <div class="insight-text">
+                                    <strong>Water Management:</strong> Smart water monitoring systems and digital twins of watersheds to enhance water security.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">3</div>
+                                <div class="insight-text">
+                                    <strong>Disaster Management:</strong> Advanced early warning systems using AI and satellite data to predict and respond to extreme events.
+                                </div>
+                            </li>
+                            <li class="insight-item">
+                                <div class="insight-marker">4</div>
+                                <div class="insight-text">
+                                    <strong>Public Health:</strong> Climate and health intelligence systems tracking disease vectors and heat stress vulnerabilities.
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Explore Technologies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about climate resilience and adaptation</p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is climate resilience and how does it differ from adaptation?</h3>
+                        <div class="faq-toggle">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Climate resilience refers to the ability of a system (such as a community, ecosystem, or infrastructure) to anticipate, prepare for, respond to, and recover from climate-related disruptions. It encompasses both the capacity to withstand shocks and the ability to evolve and transform in response to changing conditions.</p>
+                        <p>Climate adaptation, on the other hand, refers to specific actions taken to adjust to actual or expected climate changes and their effects. Adaptation measures are focused on reducing vulnerability and enhancing adaptive capacity.</p>
+                        <p>In essence, resilience is the broader goal or outcome, while adaptation represents the concrete steps taken to achieve that resilience.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are nature-based solutions and why are they important?</h3>
+                        <div class="faq-toggle">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nature-based solutions (NbS) are actions that work with and enhance natural processes to address societal challenges like climate change. They involve protecting, sustainably managing, or restoring ecosystems to provide both human well-being and biodiversity benefits.</p>
+                        <p>Examples include:</p>
+                        <ul>
+                            <li>Mangrove restoration to protect coastal areas from storm surges</li>
+                            <li>Urban green spaces to reduce heat island effects</li>
+                            <li>Watershed management to improve water security</li>
+                            <li>Agroforestry to enhance agricultural resilience</li>
+                        </ul>
+                        <p>These solutions are important because they often provide multiple benefits simultaneously (e.g., flood protection, carbon sequestration, biodiversity conservation, and livelihood opportunities) and can be more cost-effective and sustainable than traditional infrastructure approaches.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can communities effectively engage in climate resilience efforts?</h3>
+                        <div class="faq-toggle">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Communities can effectively engage in climate resilience efforts through:</p>
+                        <ol>
+                            <li><strong>Participatory Risk Assessments:</strong> Engage in mapping local vulnerabilities and capacities to identify priority areas for action.</li>
+                            <li><strong>Local Knowledge Integration:</strong> Incorporate traditional and indigenous knowledge into adaptation strategies, as these often contain valuable insights about local ecosystems and historical climate patterns.</li>
+                            <li><strong>Community-Based Early Warning Systems:</strong> Develop locally managed systems to monitor environmental conditions and provide timely alerts.</li>
+                            <li><strong>Collective Resource Management:</strong> Establish community groups for managing shared resources like water, forests, or fisheries.</li>
+                            <li><strong>Advocacy and Engagement:</strong> Participate in local planning processes to ensure climate considerations are integrated into development plans.</li>
+                            <li><strong>Education and Awareness:</strong> Organize community workshops and information campaigns to build understanding of climate risks and solutions.</li>
+                        </ol>
+                        <p>Successful community engagement prioritizes inclusivity, ensuring that marginalized groups, women, youth, and the elderly have opportunities to participate and lead.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What funding sources are available for climate resilience projects in Asia?</h3>
+                        <div class="faq-toggle">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Several funding sources are available for climate resilience projects in Asia:</p>
+                        <p><strong>Multilateral Climate Funds:</strong></p>
+                        <ul>
+                            <li>Green Climate Fund (GCF)</li>
+                            <li>Adaptation Fund (AF)</li>
+                            <li>Global Environment Facility (GEF)</li>
+                            <li>Climate Investment Funds (CIF)</li>
+                        </ul>
+                        <p><strong>Development Finance Institutions:</strong></p>
+                        <ul>
+                            <li>Asian Development Bank (ADB)</li>
+                            <li>World Bank</li>
+                            <li>Asian Infrastructure Investment Bank (AIIB)</li>
+                        </ul>
+                        <p><strong>Bilateral Sources:</strong></p>
+                        <ul>
+                            <li>Japan International Cooperation Agency (JICA)</li>
+                            <li>USAID</li>
+                            <li>UK Foreign, Commonwealth & Development Office (FCDO)</li>
+                            <li>German International Climate Initiative (IKI)</li>
+                        </ul>
+                        <p><strong>Private Sector Financing:</strong></p>
+                        <ul>
+                            <li>Climate bonds and green bonds</li>
+                            <li>Impact investors</li>
+                            <li>Corporate social responsibility programs</li>
+                            <li>Public-private partnerships</li>
+                        </ul>
+                        <p>Each funding source has different eligibility criteria, application processes, and focus areas, so it's important to research thoroughly and align project proposals with funder priorities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Toggle active state for clicked item
+                item.classList.toggle('active');
+                
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
