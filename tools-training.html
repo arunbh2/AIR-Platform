@@ -1,1 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools & Training - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Tools & Training specific styles */
+        .tools-hero {
+            background-color: var(--accent);
+            background-image: linear-gradient(rgba(237, 106, 130, 0.9), rgba(237, 106, 130, 0.9)), url('../images/hero-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
 
+        .learning-paths-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .paths-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .path-card {
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .path-header {
+            padding: 2rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .beginner .path-header {
+            background-color: var(--accent);
+        }
+
+        .intermediate .path-header {
+            background-color: var(--primary);
+        }
+
+        .advanced .path-header {
+            background-color: var(--success);
+        }
+
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto var(--spacing-md);
+        }
+
+        .path-icon i {
+            width: 30px;
+            height: 30px;
+            color: var(--white);
+        }
+
+        .path-header h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .path-header p {
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        .path-content {
+            padding: 2rem;
+            background-color: var(--white);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .path-description {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .path-modules {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .path-modules h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .module-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--spacing-md) 0;
+        }
+
+        .module-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .module-item:last-child {
+            border-bottom: none;
+        }
+
+        .module-item i {
+            width: 20px;
+            height: 20px;
+            margin-right: var(--spacing-sm);
+            color: var(--text-light);
+        }
+
+        .toolkits-section {
+            background-color: var(--bg-light);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .toolkits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .toolkit-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toolkit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toolkit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-light);
+            border-radius: 20px;
+        }
+
+        .toolkit-icon i {
+            width: 40px;
+            height: 40px;
+            color: var(--primary);
+        }
+
+        .toolkit-content {
+            padding: 0 2rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .toolkit-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+
+        .toolkit-description {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .toolkit-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .toolkit-meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .toolkit-meta-item i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .resources-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .resource-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            height: 100%;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .resource-icon {
+            width: 80px;
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-md);
+        }
+
+        .resource-icon i {
+            width: 32px;
+            height: 32px;
+            color: var(--white);
+        }
+
+        .resource-content {
+            flex: 1;
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+
+        .resource-description {
+            margin-bottom: var(--spacing-md);
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .cta-section {
+            background-color: var(--primary);
+            background-image: linear-gradient(rgba(255, 166, 0, 0.9), rgba(255, 166, 0, 0.9)), url('../images/hero-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            margin-bottom: var(--spacing-md);
+            font-size: 2.5rem;
+        }
+
+        .cta-content p {
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .cta-buttons .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .cta-buttons .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .paths-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html">Community Forum</a></li>
+                    <li><a href="tools-training.html" class="active">Tools & Training</a></li>
+                    <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tools & Training Hero -->
+    <section class="tools-hero">
+        <div class="container">
+            <h1>Tools & Training</h1>
+            <p>Grow your climate resilience expertise with our comprehensive learning pathways and practical resources</p>
+        </div>
+    </section>
+
+    <!-- Learning Pathways -->
+    <section class="learning-paths-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Learning Pathways</h2>
+                <p>Structured learning journeys for different experience levels</p>
+            </div>
+            
+            <div class="paths-container">
+                <!-- Beginner Pathway -->
+                <div class="path-card beginner">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i data-lucide="sprout"></i>
+                        </div>
+                        <h3>Beginner Pathway</h3>
+                        <p>For those new to climate resilience</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            Start your journey into climate resilience with foundational concepts, key terminology, and an overview of major climate risks and regional vulnerabilities specific to Asia.
+                        </p>
+                        
+                        <div class="path-modules">
+                            <h4>Core Modules</h4>
+                            <ul class="module-list">
+                                <li class="module-item">
+                                    <i data-lucide="book-open"></i>
+                                    Introduction to Climate Change & Resilience
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="map"></i>
+                                    Climate Risks in Asia: Regional Overview
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="lightbulb"></i>
+                                    Basic Principles of Climate Adaptation
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="users"></i>
+                                    Community Engagement Basics
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-primary" style="background-color: var(--accent);">Start Beginner Pathway</a>
+                    </div>
+                </div>
+                
+                <!-- Intermediate Pathway -->
+                <div class="path-card intermediate">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i data-lucide="tree"></i>
+                        </div>
+                        <h3>Intermediate Pathway</h3>
+                        <p>For practitioners with basic knowledge</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            Deepen your knowledge and skills with advanced methodologies for risk assessment, climate scenario planning, and practical implementation strategies for various sectors.
+                        </p>
+                        
+                        <div class="path-modules">
+                            <h4>Core Modules</h4>
+                            <ul class="module-list">
+                                <li class="module-item">
+                                    <i data-lucide="clipboard-list"></i>
+                                    Advanced Risk Assessment Methodologies
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="git-branch"></i>
+                                    Climate Scenario Planning
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="briefcase"></i>
+                                    Sector-Specific Adaptation Strategies
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="bar-chart-2"></i>
+                                    Monitoring & Evaluation Frameworks
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-primary">Start Intermediate Pathway</a>
+                    </div>
+                </div>
+                
+                <!-- Advanced Pathway -->
+                <div class="path-card advanced">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i data-lucide="mountain"></i>
+                        </div>
+                        <h3>Advanced Pathway</h3>
+                        <p>For experienced professionals and experts</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            Gain specialized knowledge and strategic insights with training in policy advocacy, technical adaptation solutions, strategic ecosystem management, and advanced resource mobilization.
+                        </p>
+                        
+                        <div class="path-modules">
+                            <h4>Core Modules</h4>
+                            <ul class="module-list">
+                                <li class="module-item">
+                                    <i data-lucide="landmark"></i>
+                                    Policy Advocacy for Climate Resilience
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="cpu"></i>
+                                    Technical Adaptation Solutions
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="globe"></i>
+                                    Strategic Ecosystem Management
+                                </li>
+                                <li class="module-item">
+                                    <i data-lucide="wallet"></i>
+                                    Advanced Resource Mobilization
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-primary" style="background-color: var(--success);">Start Advanced Pathway</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloadable Toolkits -->
+    <section class="toolkits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Downloadable Toolkits</h2>
+                <p>Practical resources to guide your climate resilience work</p>
+            </div>
+            
+            <div class="toolkits-grid">
+                <!-- Toolkit 1 -->
+                <div class="toolkit-card">
+                    <div class="toolkit-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <div class="toolkit-content">
+                        <h3 class="toolkit-title">Getting Started with Climate Resilience</h3>
+                        <p class="toolkit-description">
+                            A comprehensive beginner's guide with step-by-step instructions for understanding climate risks and implementing basic adaptation measures.
+                        </p>
+                        <div class="toolkit-meta">
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="file"></i>
+                                <span>PDF, 45 pages</span>
+                            </div>
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="download"></i>
+                                <span>1,245 downloads</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download Toolkit</a>
+                    </div>
+                </div>
+                
+                <!-- Toolkit 2 -->
+                <div class="toolkit-card">
+                    <div class="toolkit-icon">
+                        <i data-lucide="clipboard-check"></i>
+                    </div>
+                    <div class="toolkit-content">
+                        <h3 class="toolkit-title">Climate Adaptation Project Development</h3>
+                        <p class="toolkit-description">
+                            A detailed guide for developing and implementing climate adaptation projects, with comprehensive assessment checklists and sector-specific strategies.
+                        </p>
+                        <div class="toolkit-meta">
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="file"></i>
+                                <span>PDF, 68 pages</span>
+                            </div>
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="download"></i>
+                                <span>978 downloads</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download Toolkit</a>
+                    </div>
+                </div>
+                
+                <!-- Toolkit 3 -->
+                <div class="toolkit-card">
+                    <div class="toolkit-icon">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <div class="toolkit-content">
+                        <h3 class="toolkit-title">Advanced Resilience Strategies</h3>
+                        <p class="toolkit-description">
+                            Specialized guidance on policy advocacy, advanced technical adaptation solutions, and strategic ecosystem management for climate resilience.
+                        </p>
+                        <div class="toolkit-meta">
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="file"></i>
+                                <span>PDF, 92 pages</span>
+                            </div>
+                            <div class="toolkit-meta-item">
+                                <i data-lucide="download"></i>
+                                <span>642 downloads</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download Toolkit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Resources</h2>
+                <p>Specialized tools and resources to support your climate resilience work</p>
+            </div>
+            
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="clipboard-list"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Vulnerability Assessment Templates</h3>
+                        <p class="resource-description">
+                            Standardized templates for conducting climate vulnerability assessments at community, municipal, and regional scales.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Templates</a>
+                    </div>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="bar-chart-2"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Monitoring & Evaluation Toolkit</h3>
+                        <p class="resource-description">
+                            Comprehensive framework for tracking, measuring, and evaluating the impacts of climate resilience initiatives.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Toolkit</a>
+                    </div>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Community Engagement Guidelines</h3>
+                        <p class="resource-description">
+                            Best practices and methods for participatory planning and inclusive community involvement in resilience projects.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Guidelines</a>
+                    </div>
+                </div>
+                
+                <!-- Resource 4 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="calculator"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Cost-Benefit Analysis Tools</h3>
+                        <p class="resource-description">
+                            Analytical tools and templates for assessing the economic viability and benefits of climate adaptation measures.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Resource 5 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="presentation"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Training Workshop Materials</h3>
+                        <p class="resource-description">
+                            Ready-to-use presentation slides, exercises, and facilitation guides for conducting climate resilience workshops.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Materials</a>
+                    </div>
+                </div>
+                
+                <!-- Resource 6 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i data-lucide="map"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">GIS Mapping Resources</h3>
+                        <p class="resource-description">
+                            Tools and guidance for using geographic information systems to map climate risks and adaptation options.
+                        </p>
+                        <a href="#" class="btn btn-secondary btn-sm">Access Resources</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Enhance Your Climate Resilience Skills?</h2>
+                <p>Join thousands of practitioners across Asia who are building their expertise and making a difference in their communities.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Create Free Account</a>
+                    <a href="#" class="btn btn-secondary">Learn More About Certification</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
