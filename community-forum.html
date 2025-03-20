@@ -1,1 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Forum Specific Stylesheet -->
+    <link rel="stylesheet" href="css/forum.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html" class="active">Community Forum</a></li>
+                    <li><a href="tools-training.html">Tools & Training</a></li>
+                    <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Forum Hero -->
+    <section class="forum-hero">
+        <div class="container">
+            <div class="forum-hero-content">
+                <h1>AIR Community Forum</h1>
+                <p>Connect with experts, share knowledge, and collaborate on climate resilience solutions.</p>
+                <div class="forum-search">
+                    <input type="text" placeholder="Search the forum...">
+                    <button class="btn btn-primary">
+                        <i data-lucide="search"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forum Main -->
+    <main class="forum-main">
+        <div class="container">
+            <div class="forum-layout">
+                <!-- Forum Sidebar -->
+                <aside class="forum-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Categories</h3>
+                        <ul class="category-list">
+                            <li>
+                                <a href="#" class="category-item active">
+                                    <span class="category-icon" style="background-color: var(--secondary);">
+                                        <i data-lucide="zap"></i>
+                                    </span>
+                                    <span class="category-name">Technology Solutions</span>
+                                    <span class="category-count">24</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="category-item">
+                                    <span class="category-icon" style="background-color: var(--primary);">
+                                        <i data-lucide="landmark"></i>
+                                    </span>
+                                    <span class="category-name">Funding & Governance</span>
+                                    <span class="category-count">16</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="category-item">
+                                    <span class="category-icon" style="background-color: var(--success);">
+                                        <i data-lucide="book-open"></i>
+                                    </span>
+                                    <span class="category-name">Case Studies & Lessons</span>
+                                    <span class="category-count">32</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="category-item">
+                                    <span class="category-icon" style="background-color: var(--accent);">
+                                        <i data-lucide="users"></i>
+                                    </span>
+                                    <span class="category-name">Community Engagement</span>
+                                    <span class="category-count">18</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="category-item">
+                                    <span class="category-icon" style="background-color: var(--alert);">
+                                        <i data-lucide="cloud-rain"></i>
+                                    </span>
+                                    <span class="category-name">Climate Science</span>
+                                    <span class="category-count">21</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Popular Tags</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">flood-resilience</a>
+                            <a href="#" class="tag">agriculture</a>
+                            <a href="#" class="tag">water-management</a>
+                            <a href="#" class="tag">policy</a>
+                            <a href="#" class="tag">funding</a>
+                            <a href="#" class="tag">community</a>
+                            <a href="#" class="tag">ai</a>
+                            <a href="#" class="tag">early-warning</a>
+                            <a href="#" class="tag">drought</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Top Contributors</h3>
+                        <ul class="contributor-list">
+                            <li class="contributor-item">
+                                <img src="https://via.placeholder.com/40" alt="Dr. Anya Sharma" class="contributor-avatar">
+                                <div class="contributor-info">
+                                    <span class="contributor-name">Dr. Anya Sharma</span>
+                                    <span class="contributor-role">Climate Scientist</span>
+                                </div>
+                                <span class="badge expert-badge">Expert</span>
+                            </li>
+                            <li class="contributor-item">
+                                <img src="https://via.placeholder.com/40" alt="Kenji Tanaka" class="contributor-avatar">
+                                <div class="contributor-info">
+                                    <span class="contributor-name">Kenji Tanaka</span>
+                                    <span class="contributor-role">NGO Leader</span>
+                                </div>
+                                <span class="badge expert-badge">Expert</span>
+                            </li>
+                            <li class="contributor-item">
+                                <img src="https://via.placeholder.com/40" alt="Priya Patel" class="contributor-avatar">
+                                <div class="contributor-info">
+                                    <span class="contributor-name">Priya Patel</span>
+                                    <span class="contributor-role">Policy Advisor</span>
+                                </div>
+                                <span class="badge expert-badge">Expert</span>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Forum Content -->
+                <div class="forum-content">
+                    <!-- Featured Discussions -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h2>
+                                <i data-lucide="pin" class="section-icon"></i>
+                                Featured Discussions
+                            </h2>
+                            <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                        </div>
+
+                        <div class="topic-list">
+                            <div class="topic-item pinned">
+                                <div class="topic-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Dr. Anya Sharma">
+                                </div>
+                                <div class="topic-content">
+                                    <div class="topic-title">
+                                        <a href="#">What are the biggest hurdles your community or organization faces in developing climate resilience plans?</a>
+                                        <span class="badge">Pinned</span>
+                                    </div>
+                                    <div class="topic-meta">
+                                        <span class="topic-category">
+                                            <span class="category-color" style="background-color: var(--secondary);"></span>
+                                            Technology Solutions
+                                        </span>
+                                        <span class="topic-author">Started by <a href="#">Dr. Anya Sharma</a></span>
+                                        <span class="topic-date">3 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stats-replies">
+                                        <span class="stats-number">24</span>
+                                        <span class="stats-label">Replies</span>
+                                    </div>
+                                    <div class="stats-views">
+                                        <span class="stats-number">143</span>
+                                        <span class="stats-label">Views</span>
+                                    </div>
+                                </div>
+                                <div class="topic-activity">
+                                    <div class="activity-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="Latest respondent">
+                                    </div>
+                                    <div class="activity-info">
+                                        <span class="activity-user"><a href="#">Rizwan Khan</a></span>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item pinned">
+                                <div class="topic-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Kenji Tanaka">
+                                </div>
+                                <div class="topic-content">
+                                    <div class="topic-title">
+                                        <a href="#">Share an inspiring example of a successful climate adaptation project in your region</a>
+                                        <span class="badge">Pinned</span>
+                                    </div>
+                                    <div class="topic-meta">
+                                        <span class="topic-category">
+                                            <span class="category-color" style="background-color: var(--success);"></span>
+                                            Case Studies & Lessons
+                                        </span>
+                                        <span class="topic-author">Started by <a href="#">Kenji Tanaka</a></span>
+                                        <span class="topic-date">1 week ago</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stats-replies">
+                                        <span class="stats-number">31</span>
+                                        <span class="stats-label">Replies</span>
+                                    </div>
+                                    <div class="stats-views">
+                                        <span class="stats-number">205</span>
+                                        <span class="stats-label">Views</span>
+                                    </div>
+                                </div>
+                                <div class="topic-activity">
+                                    <div class="activity-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="Latest respondent">
+                                    </div>
+                                    <div class="activity-info">
+                                        <span class="activity-user"><a href="#">Prof. Lena Wong</a></span>
+                                        <span class="activity-time">23 minutes ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trending Topics -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h2>
+                                <i data-lucide="trending-up" class="section-icon"></i>
+                                Trending Topics
+                            </h2>
+                            <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                        </div>
+
+                        <div class="topic-list">
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Topic starter">
+                                </div>
+                                <div class="topic-content">
+                                    <div class="topic-title">
+                                        <a href="#">What emerging technologies hold promise for enhancing climate resilience in Asia?</a>
+                                        <span class="badge hot-badge">Hot</span>
+                                    </div>
+                                    <div class="topic-meta">
+                                        <span class="topic-category">
+                                            <span class="category-color" style="background-color: var(--secondary);"></span>
+                                            Technology Solutions
+                                        </span>
+                                        <span class="topic-author">Started by <a href="#">Prof. Lena Wong</a></span>
+                                        <span class="topic-date">2 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stats-replies">
+                                        <span class="stats-number">18</span>
+                                        <span class="stats-label">Replies</span>
+                                    </div>
+                                    <div class="stats-views">
+                                        <span class="stats-number">127</span>
+                                        <span class="stats-label">Views</span>
+                                    </div>
+                                </div>
+                                <div class="topic-activity">
+                                    <div class="activity-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="Latest respondent">
+                                    </div>
+                                    <div class="activity-info">
+                                        <span class="activity-user"><a href="#">Dr. Anya Sharma</a></span>
+                                        <span class="activity-time">3 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Topic starter">
+                                </div>
+                                <div class="topic-content">
+                                    <div class="topic-title">
+                                        <a href="#">What policy changes are most critical for accelerating climate resilience in Asia?</a>
+                                    </div>
+                                    <div class="topic-meta">
+                                        <span class="topic-category">
+                                            <span class="category-color" style="background-color: var(--primary);"></span>
+                                            Funding & Governance
+                                        </span>
+                                        <span class="topic-author">Started by <a href="#">Priya Patel</a></span>
+                                        <span class="topic-date">4 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stats-replies">
+                                        <span class="stats-number">15</span>
+                                        <span class="stats-label">Replies</span>
+                                    </div>
+                                    <div class="stats-views">
+                                        <span class="stats-number">98</span>
+                                        <span class="stats-label">Views</span>
+                                    </div>
+                                </div>
+                                <div class="topic-activity">
+                                    <div class="activity-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="Latest respondent">
+                                    </div>
+                                    <div class="activity-info">
+                                        <span class="activity-user"><a href="#">Kenji Tanaka</a></span>
+                                        <span class="activity-time">Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Topic starter">
+                                </div>
+                                <div class="topic-content">
+                                    <div class="topic-title">
+                                        <a href="#">How can we effectively empower local communities to take ownership of climate resilience initiatives?</a>
+                                    </div>
+                                    <div class="topic-meta">
+                                        <span class="topic-category">
+                                            <span class="category-color" style="background-color: var(--accent);"></span>
+                                            Community Engagement
+                                        </span>
+                                        <span class="topic-author">Started by <a href="#">Rizwan Khan</a></span>
+                                        <span class="topic-date">1 week ago</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stats-replies">
+                                        <span class="stats-number">27</span>
+                                        <span class="stats-label">Replies</span>
+                                    </div>
+                                    <div class="stats-views">
+                                        <span class="stats-number">174</span>
+                                        <span class="stats-label">Views</span>
+                                    </div>
+                                </div>
+                                <div class="topic-activity">
+                                    <div class="activity-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="Latest respondent">
+                                    </div>
+                                    <div class="activity-info">
+                                        <span class="activity-user"><a href="#">Priya Patel</a></span>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h2>
+                                <i data-lucide="activity" class="section-icon"></i>
+                                Recent Activity
+                            </h2>
+                            <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                        </div>
+
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="User">
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-header">
+                                        <a href="#" class="activity-user">Dr. Anya Sharma</a> 
+                                        replied to 
+                                        <a href="#" class="activity-topic">What emerging technologies hold promise for enhancing climate resilience in Asia?</a>
+                                    </div>
+                                    <div class="activity-excerpt">
+                                        "AI-powered early warning systems have shown great promise in predicting extreme weather events with greater accuracy and longer lead times..."
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span class="activity-time">3 hours ago</span>
+                                        <a href="#" class="activity-action">View Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="User">
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-header">
+                                        <a href="#" class="activity-user">Prof. Lena Wong</a> 
+                                        started a new topic 
+                                        <a href="#" class="activity-topic">Climate-smart agriculture techniques for small-scale farmers in Southeast Asia</a>
+                                    </div>
+                                    <div class="activity-excerpt">
+                                        "Based on our recent field studies in Northern Vietnam, we've identified several promising climate-smart agriculture techniques..."
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span class="activity-time">6 hours ago</span>
+                                        <a href="#" class="activity-action">View Topic</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="User">
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-header">
+                                        <a href="#" class="activity-user">Rizwan Khan</a> 
+                                        replied to 
+                                        <a href="#" class="activity-topic">What are the biggest hurdles your community or organization faces in developing climate resilience plans?</a>
+                                    </div>
+                                    <div class="activity-excerpt">
+                                        "From our experience in Bangladesh, one of the most significant challenges is the limited access to accurate, localized climate data..."
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span class="activity-time">2 hours ago</span>
+                                        <a href="#" class="activity-action">View Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" class="pagination-prev disabled"><i data-lucide="chevron-left"></i> Previous</a>
+                        <div class="pagination-pages">
+                            <a href="#" class="pagination-page active">1</a>
+                            <a href="#" class="pagination-page">2</a>
+                            <a href="#" class="pagination-page">3</a>
+                            <span class="pagination-ellipsis">...</span>
+                            <a href="#" class="pagination-page">12</a>
+                        </div>
+                        <a href="#" class="pagination-next">Next <i data-lucide="chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="forum-cta">
+        <div class="container">
+            <div class="forum-cta-content">
+                <h2>Join the Conversation</h2>
+                <p>Share your expertise, ask questions, and collaborate with climate resilience professionals around Asia.</p>
+                <a href="#" class="btn btn-primary">Create Account</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/forum.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
