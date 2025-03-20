@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Team Page Specific Styles -->
+    <style>
+        .team-hero {
+            background-color: var(--accent);
+            background-image: linear-gradient(rgba(237, 106, 130, 0.9), rgba(237, 106, 130, 0.9)), url('../images/hero-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .team-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .team-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .team-section:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .team-member {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .member-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .member-photo img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: var(--spacing-lg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-info h3 {
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.3rem;
+        }
+
+        .member-title {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.95rem;
+        }
+
+        .member-organization {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+        }
+
+        .member-bio {
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .member-social {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+
+        .social-link i {
+            width: 18px;
+            height: 18px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover i {
+            color: var(--white);
+        }
+
+        .join-team {
+            background-color: var(--bg-light);
+            border: 2px dashed var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--spacing-lg);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .join-team:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .join-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .join-icon i {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+        }
+
+        .join-team h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .join-team p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-light);
+        }
+
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-hero {
+                padding: 3rem 0;
+            }
+
+            .team-hero h1 {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html">Community Forum</a></li>
+                    <li><a href="tools-training.html">Tools & Training</a></li>
+                    <li><a href="team.html" class="active">Our Team</a></li>
+                    <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Team Hero -->
+    <section class="team-hero">
+        <div class="container">
+            <h1>Our Team</h1>
+            <p>Meet the dedicated experts behind the AIR Platform who are working to build climate resilience across Asia through innovative approaches and meaningful collaborations.</p>
+        </div>
+    </section>
+
+    <!-- Implementing Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="section-title">
+                <h2>Implementing Team</h2>
+                <p>The core team responsible for driving the AIR Platform's vision and operations, all from Practical Action.</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Ayan -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Ayan">
+                    </div>
+                    <div class="member-info">
+                        <h3>Ayan</h3>
+                        <p class="member-title">Regional Director - Asia</p>
+                        <p class="member-organization">Practical Action</p>
+                        <p class="member-bio">Leading our strategic efforts across Asian communities to implement effective climate resilience initiatives and foster cross-regional collaboration.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Arunabha -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Arunabha">
+                    </div>
+                    <div class="member-info">
+                        <h3>Arunabha</h3>
+                        <p class="member-title">Chief Ecosystem Orchestrator</p>
+                        <p class="member-organization">Practical Action</p>
+                        <p class="member-bio">Coordinating our network of partners, experts, and communities to create synergistic collaborations that amplify our climate resilience impact.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Anuj -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Anuj">
+                    </div>
+                    <div class="member-info">
+                        <h3>Anuj</h3>
+                        <p class="member-title">Regional Head Consulting Asia</p>
+                        <p class="member-organization">Practical Action</p>
+                        <p class="member-bio">Leading our consulting services across Asia, providing expertise and guidance to partners implementing climate resilience projects.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rakesh Supkar -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Rakesh Supkar">
+                    </div>
+                    <div class="member-info">
+                        <h3>Rakesh Supkar</h3>
+                        <p class="member-title">Asia Regional Head of Operations</p>
+                        <p class="member-organization">Practical Action</p>
+                        <p class="member-bio">Overseeing the operational aspects of our climate resilience work across Asia, ensuring effective implementation and resource management.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Future Team Member Placeholder -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="user-plus"></i>
+                    </div>
+                    <h3>Join Our Team</h3>
+                    <p>We're always looking for passionate individuals to join our mission of building climate resilience in Asia.</p>
+                    <a href="#" class="btn btn-primary">View Opportunities</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advisors Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="section-title">
+                <h2>Advisors</h2>
+                <p>Distinguished experts who provide strategic guidance and insights to the AIR Platform.</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Deepali Khanna -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Deepali Khanna">
+                    </div>
+                    <div class="member-info">
+                        <h3>Deepali Khanna</h3>
+                        <p class="member-title">Strategic Advisor</p>
+                        <p class="member-organization">Rockefeller Foundation</p>
+                        <p class="member-bio">Providing strategic guidance on climate resilience initiatives and helping connect the AIR Platform with key stakeholders and resources.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Satyam Vyas -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://via.placeholder.com/400x500" alt="Satyam Vyas">
+                    </div>
+                    <div class="member-info">
+                        <h3>Satyam Vyas</h3>
+                        <p class="member-title">Technology Advisor</p>
+                        <p class="member-organization">Climate Tech Ventures</p>
+                        <p class="member-bio">Advising on technological innovations and digital solutions that can enhance climate resilience efforts across the AIR Platform.</p>
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                            <a href="#" class="social-link"><i data-lucide="mail"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advisor Placeholder 1 -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="user-plus"></i>
+                    </div>
+                    <h3>Future Advisor</h3>
+                    <p>This space is reserved for additional advisory board members who will contribute to the AIR Platform's vision and strategy.</p>
+                </div>
+                
+                <!-- Advisor Placeholder 2 -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="user-plus"></i>
+                    </div>
+                    <h3>Future Advisor</h3>
+                    <p>This space is reserved for additional advisory board members who will contribute to the AIR Platform's vision and strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="section-title">
+                <h2>Members</h2>
+                <p>Organizations and individuals who are part of the AIR Platform ecosystem, contributing to our collective climate resilience goals.</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Member Placeholder 1 -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Member Organization</h3>
+                    <p>This space is reserved for member organizations that are part of the AIR Platform network.</p>
+                </div>
+                
+                <!-- Member Placeholder 2 -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Member Organization</h3>
+                    <p>This space is reserved for member organizations that are part of the AIR Platform network.</p>
+                </div>
+                
+                <!-- Member Placeholder 3 -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Member Organization</h3>
+                    <p>This space is reserved for member organizations that are part of the AIR Platform network.</p>
+                </div>
+                
+                <!-- Join as Member -->
+                <div class="join-team">
+                    <div class="join-icon">
+                        <i data-lucide="plus-circle"></i>
+                    </div>
+                    <h3>Become a Member</h3>
+                    <p>Join the AIR Platform network to contribute to and benefit from collective climate resilience initiatives across Asia.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Mission CTA -->
+    <section class="cta-section" style="background-color: var(--primary); color: var(--white); padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h2>Join Our Mission</h2>
+            <p>Become part of our community working to build climate resilience across Asia.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="#" class="btn btn-primary" style="background-color: var(--white); color: var(--primary);">Partner With Us</a>
+                <a href="#" class="btn btn-secondary" style="border: 2px solid var(--white);">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
