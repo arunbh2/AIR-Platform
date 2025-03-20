@@ -1,1 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard - AIR Platform</title>
+    <!-- Google Fonts: Inter for headers, Roboto for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Dashboard Specific Stylesheet -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>AIR Platform</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Impact Marketplace</a></li>
+                    <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                    <li><a href="community-forum.html">Community Forum</a></li>
+                    <li><a href="tools-training.html">Tools & Training</a></li>
+                    <li><a href="donor-dashboard.html" class="active">Donor Dashboard</a></li>
+                </ul>
+                <div class="mobile-nav-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Dashboard Hero -->
+    <section class="dashboard-hero">
+        <div class="container">
+            <div class="dashboard-hero-content">
+                <h1>Donor Dashboard</h1>
+                <p>Track your impact and see how your contributions are making a difference.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Main -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- User Profile Section -->
+            <div class="user-profile">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/100" alt="John Smith">
+                    </div>
+                    <div class="profile-details">
+                        <h2>Welcome, John Smith</h2>
+                        <p class="profile-title">Individual Donor</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Projects Funded</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$5,250</span>
+                                <span class="stat-label">Total Donated</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3,560</span>
+                                <span class="stat-label">Lives Impacted</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i data-lucide="plus"></i>
+                            Fund a Project
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i data-lucide="settings"></i>
+                            Account Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Layout -->
+            <div class="dashboard-layout">
+                <!-- Sidebar for Dashboard Navigation -->
+                <aside class="dashboard-sidebar">
+                    <nav class="dashboard-nav">
+                        <ul>
+                            <li>
+                                <a href="#overview" class="dashboard-nav-item active">
+                                    <i data-lucide="layout-dashboard"></i>
+                                    <span>Overview</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#funded-projects" class="dashboard-nav-item">
+                                    <i data-lucide="briefcase"></i>
+                                    <span>Funded Projects</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#impact-metrics" class="dashboard-nav-item">
+                                    <i data-lucide="bar-chart-2"></i>
+                                    <span>Impact Metrics</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#recommendations" class="dashboard-nav-item">
+                                    <i data-lucide="heart"></i>
+                                    <span>Recommendations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#donation-history" class="dashboard-nav-item">
+                                    <i data-lucide="clock"></i>
+                                    <span>Donation History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#reports" class="dashboard-nav-item">
+                                    <i data-lucide="file-text"></i>
+                                    <span>Reports</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    <!-- Overview Section -->
+                    <section id="overview" class="dashboard-section active">
+                        <!-- Impact Summary Row -->
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="card-icon" style="background-color: var(--primary);">
+                                    <i data-lucide="users"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>3,560</h3>
+                                    <p>People Benefited</p>
+                                </div>
+                                <div class="card-trend positive">
+                                    <i data-lucide="trending-up"></i>
+                                    <span>+12%</span>
+                                </div>
+                            </div>
+
+                            <div class="summary-card">
+                                <div class="card-icon" style="background-color: var(--success);">
+                                    <i data-lucide="droplets"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>28,500</h3>
+                                    <p>Liters of Clean Water</p>
+                                </div>
+                                <div class="card-trend positive">
+                                    <i data-lucide="trending-up"></i>
+                                    <span>+8%</span>
+                                </div>
+                            </div>
+
+                            <div class="summary-card">
+                                <div class="card-icon" style="background-color: var(--secondary);">
+                                    <i data-lucide="tree"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>450</h3>
+                                    <p>Trees Planted</p>
+                                </div>
+                                <div class="card-trend positive">
+                                    <i data-lucide="trending-up"></i>
+                                    <span>+5%</span>
+                                </div>
+                            </div>
+
+                            <div class="summary-card">
+                                <div class="card-icon" style="background-color: var(--accent);">
+                                    <i data-lucide="heart-handshake"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>12</h3>
+                                    <p>Projects Supported</p>
+                                </div>
+                                <div class="card-trend positive">
+                                    <i data-lucide="trending-up"></i>
+                                    <span>+2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div class="charts-row">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>Impact Distribution</h3>
+                                    <div class="chart-actions">
+                                        <button class="btn-icon">
+                                            <i data-lucide="download"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i data-lucide="more-horizontal"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-body">
+                                    <canvas id="impactDistributionChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>Donation Timeline</h3>
+                                    <div class="chart-actions">
+                                        <button class="btn-icon">
+                                            <i data-lucide="download"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i data-lucide="more-horizontal"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-body">
+                                    <canvas id="donationTimelineChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Impact Map -->
+                        <div class="impact-map-card">
+                            <div class="chart-header">
+                                <h3>Geographic Impact</h3>
+                                <div class="chart-actions">
+                                    <button class="btn-icon">
+                                        <i data-lucide="maximize-2"></i>
+                                    </button>
+                                    <button class="btn-icon">
+                                        <i data-lucide="download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="impact-map">
+                                <img src="https://via.placeholder.com/1200x400" alt="Impact Map" class="map-image">
+                                <div class="map-marker" style="top: 40%; left: 70%;" data-project="Integrated Flood Resilience Project">
+                                    <div class="marker-dot" style="background-color: var(--primary);"></div>
+                                    <div class="marker-pulse" style="border-color: var(--primary);"></div>
+                                    <div class="marker-tooltip">
+                                        <h4>Integrated Flood Resilience Project</h4>
+                                        <p>Philippines</p>
+                                        <p>Your impact: $1,200 donated</p>
+                                    </div>
+                                </div>
+                                <div class="map-marker" style="top: 45%; left: 60%;" data-project="Climate-Smart Agriculture Project">
+                                    <div class="marker-dot" style="background-color: var(--success);"></div>
+                                    <div class="marker-pulse" style="border-color: var(--success);"></div>
+                                    <div class="marker-tooltip">
+                                        <h4>Climate-Smart Agriculture Project</h4>
+                                        <p>Pakistan</p>
+                                        <p>Your impact: $800 donated</p>
+                                    </div>
+                                </div>
+                                <div class="map-marker" style="top: 30%; left: 65%;" data-project="Rural Water Supply Project">
+                                    <div class="marker-dot" style="background-color: var(--secondary);"></div>
+                                    <div class="marker-pulse" style="border-color: var(--secondary);"></div>
+                                    <div class="marker-tooltip">
+                                        <h4>Rural Water Supply Project</h4>
+                                        <p>Kyrgyz Republic</p>
+                                        <p>Your impact: $1,500 donated</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Impact Stories -->
+                        <div class="impact-stories-section">
+                            <div class="section-header">
+                                <h3>Recent Impact Stories</h3>
+                                <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                            </div>
+                            <div class="impact-stories">
+                                <div class="impact-story-card">
+                                    <div class="story-image">
+                                        <img src="https://via.placeholder.com/600x400" alt="Impact Story">
+                                    </div>
+                                    <div class="story-content">
+                                        <h4>Clean Water for Kyrgyz Village</h4>
+                                        <p class="story-meta">Rural Water Supply Project • Kyrgyz Republic</p>
+                                        <p class="story-excerpt">Your donation helped provide clean water to 150 households in a remote village, reducing waterborne diseases by 65%.</p>
+                                        <a href="#" class="btn btn-primary btn-sm">Read Full Story</a>
+                                    </div>
+                                </div>
+
+                                <div class="impact-story-card">
+                                    <div class="story-image">
+                                        <img src="https://via.placeholder.com/600x400" alt="Impact Story">
+                                    </div>
+                                    <div class="story-content">
+                                        <h4>Flood Early Warning System Saves Lives</h4>
+                                        <p class="story-meta">Integrated Flood Resilience Project • Philippines</p>
+                                        <p class="story-excerpt">The early warning system you helped fund successfully alerted 3,200 residents during recent flooding, giving them time to evacuate safely.</p>
+                                        <a href="#" class="btn btn-primary btn-sm">Read Full Story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Other sections would be defined here but are hidden initially -->
+                    <section id="funded-projects" class="dashboard-section">
+                        <h2>Funded Projects</h2>
+                        <p>This section will display all projects you've funded.</p>
+                    </section>
+
+                    <section id="impact-metrics" class="dashboard-section">
+                        <h2>Impact Metrics</h2>
+                        <p>This section will display detailed metrics about your contributions' impact.</p>
+                    </section>
+
+                    <section id="recommendations" class="dashboard-section">
+                        <h2>Recommended Projects</h2>
+                        <p>This section will display projects we think you'd be interested in based on your donation history.</p>
+                    </section>
+
+                    <section id="donation-history" class="dashboard-section">
+                        <h2>Donation History</h2>
+                        <p>This section will display a complete history of your donations.</p>
+                    </section>
+
+                    <section id="reports" class="dashboard-section">
+                        <h2>Reports</h2>
+                        <p>This section will allow you to generate and download impact reports.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AIR Platform</h2>
+                    <p>Building Climate Resilience through Augmented Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Impact Marketplace</a></li>
+                        <li><a href="knowledge-hub.html">Knowledge Hub</a></li>
+                        <li><a href="community-forum.html">Community Forum</a></li>
+                        <li><a href="tools-training.html">Tools & Training</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIR Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
